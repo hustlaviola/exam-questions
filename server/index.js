@@ -1,6 +1,7 @@
 import helmet from 'helmet';
 import cors from 'cors';
 import trimmer from 'trim-request-body';
+import dotenv from 'dotenv';
 
 import {
     express, httpStatus, debug
@@ -9,6 +10,9 @@ import messages from './utils/messages';
 import ApiError from './utils/error/ApiError';
 import handleError from './utils/error/handleError';
 import config from './config/config';
+import db from './database/models';
+
+dotenv.config();
 
 const log = debug('app:index');
 
@@ -46,7 +50,9 @@ app.use((err, req, res) => {
 const { appPort = 8080 } = config;
 
 app.listen(appPort, async () => {
+    await db.sequelize.authenticate();
     log(`listening on port: ${appPort}..`);
+    log('Database connected');
 });
 
 export default app;
