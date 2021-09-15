@@ -21,6 +21,16 @@ export default class QuestionService {
     static async addQuestion(questionObj) {
         try {
             const { categoryId, question, options } = questionObj;
+
+            if (options.length !== 4) {
+                return {
+                    isSuccessful: false,
+                    status: httpStatus.BAD_REQUEST,
+                    message: messages.optionsLength4,
+                    isPublic: true
+                };
+            }
+
             const categoryExists = await CategoryDAO.categoryExists(categoryId);
 
             if (!categoryExists) {

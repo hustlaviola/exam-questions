@@ -8,7 +8,8 @@ const messages = {
     questionsRetrieved: 'Questions retrieved successfully',
     questionDeleted: 'Question deleted successfully',
     questionRetrieved: 'Question retrieved successfully',
-    questionUpdated: 'Question updated successfully'
+    questionUpdated: 'Question updated successfully',
+    optionsLength4: 'options list must contain 4 elements'
 };
 
 export default messages;
