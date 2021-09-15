@@ -51,9 +51,6 @@ export default class QuestionDAO {
     static async getOne(id) {
         return db.Question.findOne({
             include: [{
-                model: db.Category,
-                as: 'category'
-            }, {
                 model: db.Option,
                 as: 'options'
             }],

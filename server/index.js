@@ -33,6 +33,7 @@ app.use(cors());
 app.use(trimmer);
 
 app.use('/api/v1/questions', routers.questionRouter);
+app.use('/api/v1/categories', routers.categoryRouter);
 
 app.get('/', (req, res) => res.send(`<h1>${messages.root}</h1>`));
 

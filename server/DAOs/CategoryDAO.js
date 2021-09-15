@@ -29,4 +29,15 @@ export default class CategoryDAO {
     static async categoryExists(id) {
         return (await db.Category.findByPk(id, { attributes: ['uuid'] })) !== null;
     }
+
+    /**
+     * @method getAll
+     * @description
+     * @static
+     * @returns {object} JSON response
+     * @memberof CategoryDAO
+     */
+    static async getAll() {
+        return db.Category.findAll();
+    }
 }
