@@ -6,8 +6,14 @@ const router = express.Router();
 router.get('/',
     QuestionController.getQuestions);
 
+router.get('/:id',
+    QuestionController.getQuestion);
+
 router.post('/',
     QuestionController.addQuestion);
+
+router.patch('/:id',
+    QuestionController.updateQuestion);
 
 router.delete('/:id',
     QuestionController.deleteQuestion);

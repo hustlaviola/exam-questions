@@ -46,6 +46,42 @@ export default class QuestionController {
     }
 
     /**
+     * @method getQuestion
+     * @description
+     * @static
+     * @param {object} req - Request object
+     * @param {object} res - Response object
+     * @param {object} next
+     * @returns {object} JSON response
+     * @memberof QuestionController
+     */
+    static async getQuestion(req, res, next) {
+        const rsp = await QuestionService.getQuestion(req.params.id);
+        if (!rsp.isSuccessful) {
+            return next(new ApiError(rsp.message, rsp.status, rsp.isPublic));
+        }
+        successResponse(res, httpStatus.OK, rsp.message, rsp.data);
+    }
+
+    /**
+     * @method updateQuestion
+     * @description
+     * @static
+     * @param {object} req - Request object
+     * @param {object} res - Response object
+     * @param {object} next
+     * @returns {object} JSON response
+     * @memberof QuestionController
+     */
+    static async updateQuestion(req, res, next) {
+        const rsp = await QuestionService.updateQuestion(req.params.id, req.body);
+        if (!rsp.isSuccessful) {
+            return next(new ApiError(rsp.message, rsp.status, rsp.isPublic));
+        }
+        successResponse(res, httpStatus.OK, rsp.message, rsp.data);
+    }
+
+    /**
      * @method deleteQuestion
      * @description
      * @static

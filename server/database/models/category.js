@@ -17,9 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         static associate({ Question }) {
             // define association here
             this.hasMany(Question, {
-                foreignKey: 'categoryId',
+                foreignKey: {
+                    name: 'categoryId',
+                    allowNull: false
+                },
                 as: 'questions',
-                onDelete: 'cascade'
+                onDelete: 'CASCADE',
+                hooks: true
             });
         }
 

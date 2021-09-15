@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
                     name: 'questionId',
                     allowNull: false
                 },
-                as: 'question'
+                as: 'question',
+                onDelete: 'CASCADE',
+                hooks: true
             });
         }
 

@@ -18,9 +18,13 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
             this.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' });
             this.hasMany(Option, {
-                foreignKey: 'questionId',
+                foreignKey: {
+                    name: 'questionId',
+                    allowNull: false
+                },
                 as: 'options',
-                onDelete: 'cascade'
+                onDelete: 'CASCADE',
+                hooks: true
             });
         }
 

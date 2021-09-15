@@ -32,17 +32,15 @@ export default class QuestionService {
                 };
             }
 
-            const category = await QuestionDAO.add({
+            await QuestionDAO.add({
                 categoryId,
                 question,
                 options
             });
 
-            log(category);
             return {
                 isSuccessful: true,
-                message: messages.questionAdded,
-                data: { category }
+                message: messages.questionAdded
             };
         } catch (error) {
             log('An error occurred while adding question', error);
@@ -85,6 +83,82 @@ export default class QuestionService {
     }
 
     /**
+     * @method getQuestion
+     * @description
+     * @static
+     * @param {number} id
+     * @returns {object} JSON response
+     * @memberof QuestionService
+     */
+    static async getQuestion(id) {
+        try {
+            const question = await QuestionDAO.getOne(id);
+
+            if (!question) {
+                return {
+                    isSuccessful: false,
+                    status: httpStatus.NOT_FOUND,
+                    message: messages.questionNotFound,
+                    isPublic: true
+                };
+            }
+
+            return {
+                isSuccessful: true,
+                message: messages.questionRetrieved,
+                data: { question }
+            };
+        } catch (error) {
+            log('An error occurred while deleting question', error);
+
+            return {
+                isSuccessful: false,
+                status: httpStatus.INTERNAL_SERVER_ERROR,
+                message: error,
+                isPublic: false
+            };
+        }
+    }
+
+    /**
+     * @method updateQuestion
+     * @description
+     * @static
+     * @param {number} id
+     * @param {object} data
+     * @returns {object} JSON response
+     * @memberof QuestionService
+     */
+    static async updateQuestion(id, data) {
+        try {
+            const result = await QuestionDAO.update(id, data);
+
+            if (!result[0]) {
+                return {
+                    isSuccessful: false,
+                    status: httpStatus.NOT_FOUND,
+                    message: messages.questionNotFound,
+                    isPublic: true
+                };
+            }
+
+            return {
+                isSuccessful: true,
+                message: messages.questionUpdated
+            };
+        } catch (error) {
+            log('An error occurred while deleting question', error);
+
+            return {
+                isSuccessful: false,
+                status: httpStatus.INTERNAL_SERVER_ERROR,
+                message: error,
+                isPublic: false
+            };
+        }
+    }
+
+    /**
      * @method deleteQuestion
      * @description
      * @static
@@ -94,9 +168,9 @@ export default class QuestionService {
      */
     static async deleteQuestion(id) {
         try {
-            const res = await QuestionDAO.deleteQuestion(id);
+            const result = await QuestionDAO.delete(id);
 
-            if (!res) {
+            if (!result) {
                 return {
                     isSuccessful: false,
                     status: httpStatus.NOT_FOUND,
