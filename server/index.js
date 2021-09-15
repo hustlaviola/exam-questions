@@ -11,6 +11,7 @@ import ApiError from './utils/error/ApiError';
 import handleError from './utils/error/handleError';
 import config from './config/config';
 import db from './database/models';
+import routers from './routes/index';
 
 dotenv.config();
 
@@ -30,6 +31,8 @@ app.use(cors());
 
 // Trim request body
 app.use(trimmer);
+
+app.use('/api/v1/questions', routers.questionRouter);
 
 app.get('/', (req, res) => res.send(`<h1>${messages.root}</h1>`));
 

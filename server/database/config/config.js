@@ -1,12 +1,24 @@
 module.exports = {
     development: {
-        database: 'exam',
-        username: 'postgres',
-        password: 'viola',
-        host: '127.0.0.1',
-        dialect: 'postgres'
+        database: 'd1jrna41il4d9c',
+        username: 'iqxvpwvvewnzwa',
+        password: 'bc48e185bafd3a4a3838fdc8203f76d8fb3ac7973cb960bf82edca22f0ae324a',
+        host: 'ec2-52-203-74-38.compute-1.amazonaws.com',
+        port: '5432',
+        dialect: 'postgres',
+        dialectOptions: {
+            ssl: true
+        }
     },
     production: {
-        use_env_variable: process.env.DATABASE_URL
+        database: 'd1jrna41il4d9c',
+        username: 'iqxvpwvvewnzwa',
+        password: 'bc48e185bafd3a4a3838fdc8203f76d8fb3ac7973cb960bf82edca22f0ae324a',
+        host: 'ec2-52-203-74-38.compute-1.amazonaws.com',
+        port: '5432',
+        dialect: 'postgres',
+        dialectOptions: {
+            ssl: true
+        }
     }
 };

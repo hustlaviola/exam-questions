@@ -5,7 +5,7 @@ import ExtendableError from './ExtendableError';
  * Class representing an API error.
  * @extends ExtendableError
  */
-export default class APIError extends ExtendableError {
+export default class ApiError extends ExtendableError {
     /**
      * @method constructor
      * @param {String} message - Error message

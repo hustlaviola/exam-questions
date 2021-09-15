@@ -19,15 +19,15 @@ module.exports = (sequelize, DataTypes) => {
             this.hasMany(Question, { foreignKey: 'categoryId', as: 'questions' });
         }
 
-        /**
-         * @method toJSON
-         * @description
-         * @returns {object} JSON response
-         * @memberof Category
-         */
-        toJSON() {
-            return { ...this.get(), id: undefined };
-        }
+        // /**
+        //  * @method toJSON
+        //  * @description
+        //  * @returns {object} JSON response
+        //  * @memberof Category
+        //  */
+        // toJSON() {
+        //     return { ...this.get(), id: undefined };
+        // }
     }
     Category.init({
         uuid: {
