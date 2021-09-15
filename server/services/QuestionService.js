@@ -55,7 +55,7 @@ export default class QuestionService {
     }
 
     /**
-     * @method getQuestion
+     * @method getQuestions
      * @description
      * @static
      * @returns {object} JSON response
@@ -131,6 +131,19 @@ export default class QuestionService {
      */
     static async updateQuestion(id, data) {
         try {
+            if (data.categoryId) {
+                const categoryExists = await CategoryDAO.categoryExists(data.categoryId);
+
+                if (!categoryExists) {
+                    return {
+                        isSuccessful: false,
+                        status: httpStatus.NOT_FOUND,
+                        message: messages.categoryNotFound,
+                        isPublic: true
+                    };
+                }
+            }
+
             const result = await QuestionDAO.update(id, data);
 
             if (!result[0]) {
