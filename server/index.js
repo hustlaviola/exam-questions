@@ -42,7 +42,8 @@ app.all('/*', (req, res, next) => {
     return next(err);
 });
 
-app.use((err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
     if (!err.isOperational) {
         log('PROGRAMMER ERROR', err);
         process.exit(0);

@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate({ Question }) {
             // define association here
-            this.belongsTo(Question, { foreignKey: 'questionId', as: 'question' });
+            this.belongsTo(Question, {
+                foreignKey: {
+                    name: 'questionId',
+                    allowNull: false
+                },
+                as: 'question'
+            });
         }
 
         /**
@@ -36,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         option: {
             type: DataTypes.STRING
+        },
+        isCorrect: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
         sequelize,

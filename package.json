@@ -11,9 +11,9 @@
     "dev": "export DEBUG=app:* && cross-env NODE_ENV=development nodemon ./server --exec babel-node",
     "lint": "eslint . --ext .js",
     "lint:fix": "npm run lint -- --fix",
-    "db:migrate": "./node_modules/.bin/sequelize db:migrate",
-    "undo:migrate": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "db:seed": "./node_modules/.bin/sequelize db:seed:all"
+    "db:migrate": "./node_modules/.bin/sequelize db:migrate --env production",
+    "undo:migrate": "./node_modules/.bin/sequelize db:migrate:undo:all --env production",
+    "db:seed": "./node_modules/.bin/sequelize db:seed:all --env production"
   },
   "repository": {
     "type": "git",

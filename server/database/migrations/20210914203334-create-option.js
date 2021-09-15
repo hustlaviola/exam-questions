@@ -18,6 +18,10 @@ module.exports = {
             option: {
                 type: DataTypes.STRING
             },
+            isCorrect: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
+            },
             createdAt: {
                 allowNull: false,
                 type: DataTypes.DATE

@@ -9,4 +9,7 @@ router.get('/',
 router.post('/',
     QuestionController.addQuestion);
 
+router.delete('/:id',
+    QuestionController.deleteQuestion);
+
 export default router;

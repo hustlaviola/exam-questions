@@ -28,6 +28,27 @@ export default class QuestionDAO {
      * @memberof QuestionDAO
      */
     static async getAll() {
-        return db.Category.findAll({ include: [{ model: db.Question, as: 'questions', include: [{ model: db.Option, as: 'options' }] }] });
+        return db.Category.findAll({
+            include: [{
+                model: db.Question,
+                as: 'questions',
+                include: [{
+                    model: db.Option,
+                    as: 'options'
+                }]
+            }]
+        });
+    }
+
+    /**
+     * @method deleteQuestion
+     * @description
+     * @static
+     * @param {number} id
+     * @returns {object} JSON response
+     * @memberof QuestionService
+     */
+    static async deleteQuestion(id) {
+        return db.Question.destroy({ where: { id } });
     }
 }

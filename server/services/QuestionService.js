@@ -14,13 +14,15 @@ export default class QuestionService {
      * @method addQuestion
      * @description
      * @static
-     * @param {object} question
+     * @param {object} questionObj
      * @returns {object} JSON response
      * @memberof QuestionService
      */
-    static async addQuestion(question) {
+    static async addQuestion(questionObj) {
         try {
-            const categoryExists = await CategoryDAO.categoryExists(question.categoryId);
+            const { categoryId, question, options } = questionObj;
+            const categoryExists = await CategoryDAO.categoryExists(categoryId);
+
             if (!categoryExists) {
                 return {
                     isSuccessful: false,
@@ -29,17 +31,22 @@ export default class QuestionService {
                     isPublic: true
                 };
             }
-            const res = await QuestionDAO.add({
-                categoryId: question.categoryId,
-                body: question.body,
-                Options: question.options
+
+            const category = await QuestionDAO.add({
+                categoryId,
+                question,
+                options
             });
-            log(res.dataValues);
+
+            log(category);
             return {
-                isSuccessful: true
+                isSuccessful: true,
+                message: messages.questionAdded,
+                data: { category }
             };
         } catch (error) {
             log('An error occurred while adding question', error);
+
             return {
                 isSuccessful: false,
                 status: httpStatus.INTERNAL_SERVER_ERROR,
@@ -58,14 +65,53 @@ export default class QuestionService {
      */
     static async getQuestions() {
         try {
-            const questions = await QuestionDAO.getAll();
-            log(questions);
+            const categories = await QuestionDAO.getAll();
+
             return {
                 isSuccessful: true,
-                data: { questions }
+                message: messages.questionsRetrieved,
+                data: { categories }
             };
         } catch (error) {
-            log('An error occurred while adding question', error);
+            log('An error occurred while retrieving questions', error);
+
+            return {
+                isSuccessful: false,
+                status: httpStatus.INTERNAL_SERVER_ERROR,
+                message: error,
+                isPublic: false
+            };
+        }
+    }
+
+    /**
+     * @method deleteQuestion
+     * @description
+     * @static
+     * @param {number} id
+     * @returns {object} JSON response
+     * @memberof QuestionService
+     */
+    static async deleteQuestion(id) {
+        try {
+            const res = await QuestionDAO.deleteQuestion(id);
+
+            if (!res) {
+                return {
+                    isSuccessful: false,
+                    status: httpStatus.NOT_FOUND,
+                    message: messages.questionNotFound,
+                    isPublic: true
+                };
+            }
+
+            return {
+                isSuccessful: true,
+                message: messages.questionDeleted
+            };
+        } catch (error) {
+            log('An error occurred while deleting question', error);
+
             return {
                 isSuccessful: false,
                 status: httpStatus.INTERNAL_SERVER_ERROR,
