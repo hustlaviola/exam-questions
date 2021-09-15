@@ -11,7 +11,7 @@ module.exports = {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4
             },
-            name: {
+            category: {
                 type: DataTypes.ENUM,
                 values: ['technical', 'aptitude', 'logical']
             },

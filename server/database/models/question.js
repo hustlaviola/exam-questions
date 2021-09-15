@@ -20,22 +20,22 @@ module.exports = (sequelize, DataTypes) => {
             this.hasMany(Option, { foreignKey: 'questionId', as: 'options' });
         }
 
-        // /**
-        //  * @method toJSON
-        //  * @description
-        //  * @returns {object} JSON response
-        //  * @memberof Question
-        //  */
-        // toJSON() {
-        //     return { ...this.get(), id: undefined };
-        // }
+        /**
+         * @method toJSON
+         * @description
+         * @returns {object} JSON response
+         * @memberof Question
+         */
+        toJSON() {
+            return { ...this.get() };
+        }
     }
     Question.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4
         },
-        body: {
+        question: {
             type: DataTypes.STRING
         }
     }, {

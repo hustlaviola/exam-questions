@@ -19,22 +19,22 @@ module.exports = (sequelize, DataTypes) => {
             this.belongsTo(Question, { foreignKey: 'questionId', as: 'question' });
         }
 
-        // /**
-        //  * @method toJSON
-        //  * @description
-        //  * @returns {object} JSON response
-        //  * @memberof Option
-        //  */
-        // toJSON() {
-        //     return { ...this.get(), id: undefined };
-        // }
+        /**
+         * @method toJSON
+         * @description
+         * @returns {object} JSON response
+         * @memberof Option
+         */
+        toJSON() {
+            return { ...this.get() };
+        }
     }
     Option.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4
         },
-        body: {
+        option: {
             type: DataTypes.STRING
         }
     }, {

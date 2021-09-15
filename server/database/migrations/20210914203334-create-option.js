@@ -15,7 +15,7 @@ module.exports = {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4
             },
-            body: {
+            option: {
                 type: DataTypes.STRING
             },
             createdAt: {
