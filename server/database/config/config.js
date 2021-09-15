@@ -1,22 +1,24 @@
+require('dotenv').config();
+
 module.exports = {
     development: {
-        database: 'd1jrna41il4d9c',
-        username: 'iqxvpwvvewnzwa',
-        password: 'bc48e185bafd3a4a3838fdc8203f76d8fb3ac7973cb960bf82edca22f0ae324a',
-        host: 'ec2-52-203-74-38.compute-1.amazonaws.com',
-        port: '5432',
-        dialect: 'postgres',
+        database: process.env.DB_NAME,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: process.env.DB_DIALECT,
         dialectOptions: {
             ssl: true
         }
     },
     production: {
-        database: 'd1jrna41il4d9c',
-        username: 'iqxvpwvvewnzwa',
-        password: 'bc48e185bafd3a4a3838fdc8203f76d8fb3ac7973cb960bf82edca22f0ae324a',
-        host: 'ec2-52-203-74-38.compute-1.amazonaws.com',
-        port: '5432',
-        dialect: 'postgres',
+        database: process.env.DB_NAME,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: process.env.DB_DIALECT,
         dialectOptions: {
             ssl: true
         }

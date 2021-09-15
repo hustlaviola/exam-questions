@@ -3,6 +3,7 @@ const messages = {
     categoryNotFound: 'Category not found',
     questionNotFound: 'Question not found',
     pageNotFound: 'You seem lost, may the force help you find your way back',
+    categoriesRetrieved: 'Categories retrieved successfully',
     questionAdded: 'Question added successfully',
     questionsRetrieved: 'Questions retrieved successfully',
     questionDeleted: 'Question deleted successfully',

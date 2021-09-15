@@ -23,11 +23,11 @@ export default class CategoryService {
 
             return {
                 isSuccessful: true,
-                message: messages.CategorysRetrieved,
+                message: messages.categoriesRetrieved,
                 data: { categories }
             };
         } catch (error) {
-            log('An error occurred while retrieving Categorys', error);
+            log('An error occurred while retrieving categories', error);
 
             return {
                 isSuccessful: false,

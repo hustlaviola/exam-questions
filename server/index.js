@@ -2,6 +2,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import trimmer from 'trim-request-body';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger.json';
 
 import {
     express, httpStatus, debug
@@ -32,6 +34,7 @@ app.use(cors());
 // Trim request body
 app.use(trimmer);
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/questions', routers.questionRouter);
 app.use('/api/v1/categories', routers.categoryRouter);
 

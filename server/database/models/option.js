@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
          * @memberof Option
          */
         toJSON() {
-            return { ...this.get() };
+            return { ...this.get(), isCorrect: undefined };
         }
     }
     Option.init({
